@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+service myservice {
+  rpc Add (AddRequest) returns (AddResponse) {}
+  rpc StreamingAdd (stream AddStreamRequest) returns (AddResponse) {}
+  rpc Count (CountRequest) returns (stream CountResponse) {}
+  rpc PrimeFinder (PrimeRequest) returns (stream PrintResponse) {}
+  rpc NoughtsAndCrosses (stream Move) returns (stream Move) {}
+}
+
+message AddRequest {
+  uint32 number_one = 1;
+  uint32 number_two = 2;
+}
+
+message AddStreamRequest {
+  uint32 number = 1;
+}
+
+message AddResponse {
+  uint32 result = 1;
+}
+
+message CountRequest {}
+
+message CountResponse {
+  uint32 response = 1;
+}
+
+message PrimeRequest {
+  uint32 starting_number = 1;
+}
+
+message PrintResponse {
+  uint32 factor = 1;
+  string prime = 2;
+}
+
+message Move {
+  uint32 position      = 1;
+  string player        = 2;
+  string debug_message = 3;
+}
